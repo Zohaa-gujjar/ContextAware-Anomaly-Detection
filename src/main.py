@@ -1,5 +1,5 @@
 def main():
-    print("Context-Aware Anomaly Detection Project Initialized")
+    print("Context-Aware Anomaly Detection Project Initialized !")
 
 
 if __name__ == "__main__":
