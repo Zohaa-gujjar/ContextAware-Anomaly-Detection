@@ -1,0 +1,20 @@
+# ===========================
+# Project Configuration
+# ===========================
+
+project:
+  name: Context-Aware Anomaly Detection
+
+dataset:
+
+  train_path: ""
+
+  test_path: ""
+
+  processed_path: "./data/processed"
+
+output:
+
+  save_results: true
+
+  output_path: "./outputs"
