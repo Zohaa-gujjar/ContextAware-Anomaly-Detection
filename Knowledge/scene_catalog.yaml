@@ -1,0 +1,1291 @@
+# ============================================================
+# ShanghaiTech Scene Catalog
+# Context-Aware Anomaly Detection Project
+# ============================================================
+
+scene_01:
+
+  # --------------------------------------------------------
+  # Basic Information
+  # --------------------------------------------------------
+  scene_id: 1
+
+  scene_name: Campus Walkway
+
+  environment:
+    indoor_outdoor: Outdoor
+    scene_type: Campus Walkway
+    description: >
+      A static CCTV camera recording a campus walkway where many people
+      pass throughout the day. Two green belts containing trees separate
+      multiple pedestrian walkways.
+
+  # --------------------------------------------------------
+  # Camera Information
+  # --------------------------------------------------------
+  camera:
+    type: Moving
+    angle: High
+    field_of_view: Broad
+
+  # --------------------------------------------------------
+  # Reference Sequences
+  # --------------------------------------------------------
+  reference_sequences:
+    - "01_002"
+    - "01_068"
+    - "01_163"
+
+  # --------------------------------------------------------
+  # Physical Objects
+  # --------------------------------------------------------
+  common_objects:
+    - People
+    - Backpacks
+    - Trees
+    - Grass
+    - Crosswalk
+    - Street Light
+    - Trash Bin
+    - Sign Board
+    - Bicycle
+    - Mop
+
+  # --------------------------------------------------------
+  # Normal Activities
+  # --------------------------------------------------------
+  normal_activities:
+    - Walking
+    - Standing
+    - Sitting
+    - Waiting
+    - Running
+    - Cycling
+    - Using Phone
+    - Carrying Luggage
+    - Sweeping
+    - Maintenance Work
+
+  # --------------------------------------------------------
+  # Contextual Concerns
+  # --------------------------------------------------------
+  contextual_concerns:
+    - Fighting
+    - Falling
+    - Loitering
+    - Screaming
+    - Weapons
+    - Blocking Pathway
+    - Attacking
+    - Damaging Trees
+    - Vehicle Intrusion
+    - Suspicious Object
+
+  # --------------------------------------------------------
+  # Environmental Constraints
+  # --------------------------------------------------------
+  environmental_constraints:
+    - Hazy Weather
+    - Tilted Camera
+
+  # --------------------------------------------------------
+  # Scene Purpose
+  # --------------------------------------------------------
+  scene_purpose:
+    - Pedestrian Movement
+    - Walking
+    - Cycling
+
+
+
+# ============================================================
+
+scene_02:
+
+  # --------------------------------------------------------
+  # Basic Information
+  # --------------------------------------------------------
+  scene_id: 2
+
+  scene_name: Road Outside Cafe
+
+  environment:
+    indoor_outdoor: Outdoor
+    scene_type: Road Outside Cafe
+    description: >
+      A static CCTV camera monitoring a road outside a cafe/shop with a
+      pedestrian walkway on its edge. The shop entrance is open and a
+      large ice cream display is visible outside.
+
+  # --------------------------------------------------------
+  # Camera Information
+  # --------------------------------------------------------
+  camera:
+    type: Static
+    angle: High
+    field_of_view: Broad
+
+  # --------------------------------------------------------
+  # Reference Sequences
+  # --------------------------------------------------------
+  reference_sequences:
+    - "02_002"
+    - "02_005"
+    - "02_164"
+
+  # --------------------------------------------------------
+  # Physical Objects
+  # --------------------------------------------------------
+  common_objects:
+    - People
+    - Backpacks
+    - Bicycle
+    - Trash Bin
+    - Crosswalk
+    - Umbrella
+    - Grocery Bags
+    - Shop Counter
+    - Orange Mat
+    - Ice Cream Display
+
+  # --------------------------------------------------------
+  # Normal Activities
+  # --------------------------------------------------------
+  normal_activities:
+    - Walking
+    - Standing
+    - Sitting
+    - Waiting
+    - Running
+    - Cycling
+    - Using Phone
+    - Carrying Luggage
+    - Sweeping
+    - Maintenance Work
+    - Walking Inside Shop
+
+  # --------------------------------------------------------
+  # Contextual Concerns
+  # --------------------------------------------------------
+  contextual_concerns:
+    - Fighting
+    - Falling
+    - Loitering
+    - Screaming
+    - Weapons
+    - Blocking Pathway
+    - Attacking
+    - Damaging Building
+    - Throwing Stones
+    - Vehicle Intrusion
+    - Suspicious Object
+
+  # --------------------------------------------------------
+  # Environmental Constraints
+  # --------------------------------------------------------
+  environmental_constraints:
+    - Hazy Weather
+    - Tilted Camera
+
+  # --------------------------------------------------------
+  # Scene Purpose
+  # --------------------------------------------------------
+  scene_purpose:
+    - Pedestrian Movement
+    - Walking
+    - Cycling
+    - Shopping
+    - Entering Shop
+
+
+
+# ============================================================
+
+scene_03:
+
+  # --------------------------------------------------------
+  # Basic Information
+  # --------------------------------------------------------
+  scene_id: 3
+
+  scene_name: Campus Road
+
+  environment:
+    indoor_outdoor: Outdoor
+    scene_type: Campus Road
+    description: >
+      A static CCTV camera monitoring a campus road where pedestrians
+      cross using a zebra crossing. Metal safety rails are present
+      alongside the road.
+
+  # --------------------------------------------------------
+  # Camera Information
+  # --------------------------------------------------------
+  camera:
+    type: Moving
+    angle: High
+    field_of_view: Broad
+
+  # --------------------------------------------------------
+  # Reference Sequences
+  # --------------------------------------------------------
+  reference_sequences:
+    - "03_001"
+    - "03_035"
+    - "03_061"
+
+  # --------------------------------------------------------
+  # Physical Objects
+  # --------------------------------------------------------
+  common_objects:
+    - People
+    - Backpacks
+    - Trees
+    - Grass
+    - Zebra Crossing
+    - Road
+    - Safety Rails
+    - Sign Board
+    - Bicycle
+    - Cars
+
+  # --------------------------------------------------------
+  # Normal Activities
+  # --------------------------------------------------------
+  normal_activities:
+    - Walking
+    - Standing
+    - Sitting
+    - Waiting
+    - Running
+    - Cycling
+    - Using Phone
+    - Carrying Luggage
+    - Sweeping
+    - Maintenance Work
+    - Driving
+    - Laughing
+
+  # --------------------------------------------------------
+  # Contextual Concerns
+  # --------------------------------------------------------
+  contextual_concerns:
+    - Fighting
+    - Falling
+    - Loitering
+    - Chasing
+    - Weapons
+    - Blocking Pathway
+    - Attacking
+    - Damaging Trees
+    - Climbing Rails
+    - Suspicious Object
+
+  # --------------------------------------------------------
+  # Environmental Constraints
+  # --------------------------------------------------------
+  environmental_constraints:
+    - Hazy Weather
+    - Tilted Camera
+    - Tilted Angle
+
+  # --------------------------------------------------------
+  # Scene Purpose
+  # --------------------------------------------------------
+  scene_purpose:
+    - Pedestrian Movement
+    - Walking
+    - Cycling
+    - Vehicle Movement
+    # ============================================================
+
+scene_04:
+
+  # --------------------------------------------------------
+  # Basic Information
+  # --------------------------------------------------------
+  scene_id: 4
+
+  scene_name: Campus Park and Walkway
+
+  environment:
+    indoor_outdoor: Outdoor
+    scene_type: Campus Park and Walkway
+    description: >
+      A static CCTV camera monitoring a campus walkway beside a small park.
+      The park contains benches and trees while pedestrians frequently
+      walk along the pathway.
+
+  # --------------------------------------------------------
+  # Camera Information
+  # --------------------------------------------------------
+  camera:
+    type: Static
+    angle: High
+    field_of_view: Broad
+
+  # --------------------------------------------------------
+  # Reference Sequences
+  # --------------------------------------------------------
+  reference_sequences:
+    - "04_001"
+    - "04_020"
+    - "04_050"
+
+  # --------------------------------------------------------
+  # Physical Objects
+  # --------------------------------------------------------
+  common_objects:
+    - People
+    - Backpacks
+    - Trees
+    - Grass
+    - Benches
+    - Walkway
+    - Skates
+
+  # --------------------------------------------------------
+  # Normal Activities
+  # --------------------------------------------------------
+  normal_activities:
+    - Walking
+    - Standing
+    - Sitting
+    - Waiting
+    - Running
+    - Skating
+    - Using Phone
+    - Carrying Luggage
+    - Sweeping
+    - Maintenance Work
+    - Laughing
+
+  # --------------------------------------------------------
+  # Contextual Concerns
+  # --------------------------------------------------------
+  contextual_concerns:
+    - Fighting
+    - Falling
+    - Loitering
+    - Chasing
+    - Weapons
+    - Blocking Pathway
+    - Attacking
+    - Damaging Trees
+    - Stabbing
+    - Climbing Rails
+    - Unauthorized Cycling
+    - Suspicious Object
+
+  # --------------------------------------------------------
+  # Environmental Constraints
+  # --------------------------------------------------------
+  environmental_constraints:
+    - Hazy Weather
+    - Tilted Camera
+    - Tilted Angle
+
+  # --------------------------------------------------------
+  # Scene Purpose
+  # --------------------------------------------------------
+  scene_purpose:
+    - Pedestrian Movement
+    - Walking
+    - Sitting
+    - Recreation
+
+
+
+# ============================================================
+
+scene_05:
+
+  # --------------------------------------------------------
+  # Basic Information
+  # --------------------------------------------------------
+  scene_id: 5
+
+  scene_name: Campus Road and Bridge
+
+  environment:
+    indoor_outdoor: Outdoor
+    scene_type: Campus Road and Bridge
+    description: >
+      A static CCTV camera monitoring a campus road connected to a bridge
+      leading towards an academic department. A lake is visible beside
+      the road.
+
+  # --------------------------------------------------------
+  # Camera Information
+  # --------------------------------------------------------
+  camera:
+    type: Static
+    angle: High
+    field_of_view: Broad
+
+  # --------------------------------------------------------
+  # Reference Sequences
+  # --------------------------------------------------------
+  reference_sequences:
+    - "05_018"
+    - "05_066"
+    - "05_024"
+
+  # --------------------------------------------------------
+  # Physical Objects
+  # --------------------------------------------------------
+  common_objects:
+    - People
+    - Backpacks
+    - Trees
+    - Grass
+    - Crosswalk
+    - Cars
+    - Bridge
+    - Lake
+
+  # --------------------------------------------------------
+  # Normal Activities
+  # --------------------------------------------------------
+  normal_activities:
+    - Walking
+    - Standing
+    - Waiting
+    - Running
+    - Using Phone
+    - Carrying Luggage
+    - Sweeping
+    - Maintenance Work
+    - Laughing
+    - Driving
+
+  # --------------------------------------------------------
+  # Contextual Concerns
+  # --------------------------------------------------------
+  contextual_concerns:
+    - Fighting
+    - Falling
+    - Loitering
+    - Chasing
+    - Weapons
+    - Blocking Pathway
+    - Attacking
+    - Damaging Trees
+    - Stabbing
+    - Climbing Rails
+    - Entering Lake
+    - Swimming
+    - Suspicious Object
+
+  # --------------------------------------------------------
+  # Environmental Constraints
+  # --------------------------------------------------------
+  environmental_constraints:
+    - Hazy Weather
+    - Tilted Camera
+    - Tilted Angle
+
+  # --------------------------------------------------------
+  # Scene Purpose
+  # --------------------------------------------------------
+  scene_purpose:
+    - Pedestrian Movement
+    - Walking
+    - Vehicle Movement
+    - Department Entrance
+
+
+
+# ============================================================
+
+scene_06:
+
+  # --------------------------------------------------------
+  # Basic Information
+  # --------------------------------------------------------
+  scene_id: 6
+
+  scene_name: Building Entrance
+
+  environment:
+    indoor_outdoor: Outdoor
+    scene_type: Building Entrance
+    description: >
+      A static CCTV camera monitoring the entrance of a campus building.
+      People frequently enter and leave the building while vehicles
+      occasionally pass in front.
+
+  # --------------------------------------------------------
+  # Camera Information
+  # --------------------------------------------------------
+  camera:
+    type: Static
+    angle: High
+    field_of_view: Broad
+
+  # --------------------------------------------------------
+  # Reference Sequences
+  # --------------------------------------------------------
+  reference_sequences:
+    - "06_001"
+    - "06_027"
+    - "06_155"
+
+  # --------------------------------------------------------
+  # Physical Objects
+  # --------------------------------------------------------
+  common_objects:
+    - People
+    - Backpacks
+    - Building
+    - Cars
+    - Crosswalk
+    - Mirror Walls
+    - Water Pipes
+    - Posters
+    - Manholes
+
+  # --------------------------------------------------------
+  # Normal Activities
+  # --------------------------------------------------------
+  normal_activities:
+    - Walking
+    - Standing
+    - Waiting
+    - Running
+    - Using Phone
+    - Carrying Luggage
+    - Sweeping
+    - Maintenance Work
+    - Laughing
+    - Entering Building
+    - Exiting Building
+
+  # --------------------------------------------------------
+  # Contextual Concerns
+  # --------------------------------------------------------
+  contextual_concerns:
+    - Fighting
+    - Falling
+    - Loitering
+    - Chasing
+    - Weapons
+    - Blocking Entrance
+    - Attacking
+    - Damaging Infrastructure
+    - Stabbing
+    - Throwing Stones
+    - Suspicious Object
+
+  # --------------------------------------------------------
+  # Environmental Constraints
+  # --------------------------------------------------------
+  environmental_constraints:
+    - Hazy Weather
+    - Tilted Camera
+    - Tilted Angle
+
+  # --------------------------------------------------------
+  # Scene Purpose
+  # --------------------------------------------------------
+  scene_purpose:
+    - Pedestrian Movement
+    - Walking
+    - Building Access
+    - Entering Building
+    - Exiting Building
+
+    # ============================================================
+
+scene_07:
+
+  # --------------------------------------------------------
+  # Basic Information
+  # --------------------------------------------------------
+  scene_id: 7
+
+  scene_name: Road with Lakeside Crossing
+
+  environment:
+    indoor_outdoor: Outdoor
+    scene_type: Road with Lakeside Crossing
+    description: >
+      A static CCTV camera monitoring a campus road containing two zebra
+      crossings with a lake located beside the road. Buildings and roadside
+      safety rails are visible.
+
+  # --------------------------------------------------------
+  # Camera Information
+  # --------------------------------------------------------
+  camera:
+    type: Static
+    angle: High
+    field_of_view: Broad
+
+  # --------------------------------------------------------
+  # Reference Sequences
+  # --------------------------------------------------------
+  reference_sequences:
+    - "07_005"
+    - "07_027"
+    - "07_155"
+
+  # --------------------------------------------------------
+  # Physical Objects
+  # --------------------------------------------------------
+  common_objects:
+    - People
+    - Backpacks
+    - Cars
+    - Road
+    - Buildings
+    - Trees
+    - Roadside Rails
+    - Lake
+    - Zebra Crossing
+
+  # --------------------------------------------------------
+  # Normal Activities
+  # --------------------------------------------------------
+  normal_activities:
+    - Walking
+    - Standing
+    - Waiting
+    - Running
+    - Cycling
+    - Driving
+    - Using Phone
+    - Carrying Luggage
+    - Sweeping
+    - Maintenance Work
+    - Laughing
+
+  # --------------------------------------------------------
+  # Contextual Concerns
+  # --------------------------------------------------------
+  contextual_concerns:
+    - Fighting
+    - Falling
+    - Loitering
+    - Chasing
+    - Weapons
+    - Blocking Road
+    - Attacking
+    - Damaging Infrastructure
+    - Throwing Stones
+    - Climbing Rails
+    - Entering Lake
+    - Swimming
+    - Jumping into Water
+    - Suspicious Object
+
+  # --------------------------------------------------------
+  # Environmental Constraints
+  # --------------------------------------------------------
+  environmental_constraints:
+    - Hazy Weather
+    - Tilted Camera
+    - Tilted Angle
+
+  # --------------------------------------------------------
+  # Scene Purpose
+  # --------------------------------------------------------
+  scene_purpose:
+    - Pedestrian Movement
+    - Vehicle Movement
+    - Walking
+    - Road Crossing
+
+
+
+# ============================================================
+
+scene_08:
+
+  # --------------------------------------------------------
+  # Basic Information
+  # --------------------------------------------------------
+  scene_id: 8
+
+  scene_name: Campus Walkway with Bridge
+
+  environment:
+    indoor_outdoor: Outdoor
+    scene_type: Campus Walkway
+    description: >
+      A static CCTV camera monitoring a campus walkway beside an academic
+      building. A small park and bridge are visible while students move
+      between departments throughout the day.
+
+  # --------------------------------------------------------
+  # Camera Information
+  # --------------------------------------------------------
+  camera:
+    type: Static
+    angle: High
+    field_of_view: Broad
+
+  # --------------------------------------------------------
+  # Reference Sequences
+  # --------------------------------------------------------
+  reference_sequences:
+    - "08_003"
+    - "08_044"
+    - "08_049"
+
+  # --------------------------------------------------------
+  # Physical Objects
+  # --------------------------------------------------------
+  common_objects:
+    - Walkway
+    - People
+    - Backpacks
+    - Building
+    - Bridge
+    - Park
+    - Trees
+    - Lake
+    - Lakeside Rails
+
+  # --------------------------------------------------------
+  # Normal Activities
+  # --------------------------------------------------------
+  normal_activities:
+    - Walking
+    - Standing
+    - Waiting
+    - Running
+    - Using Phone
+    - Carrying Luggage
+    - Sweeping
+    - Maintenance Work
+    - Laughing
+
+  # --------------------------------------------------------
+  # Contextual Concerns
+  # --------------------------------------------------------
+  contextual_concerns:
+    - Fighting
+    - Falling
+    - Loitering
+    - Chasing
+    - Weapons
+    - Blocking Pathway
+    - Attacking
+    - Damaging Infrastructure
+    - Throwing Stones
+    - Climbing Rails
+    - Entering Lake
+    - Swimming
+    - Jumping into Water
+    - Vehicle Intrusion
+    - Unauthorized Cycling
+    - Suspicious Object
+
+  # --------------------------------------------------------
+  # Environmental Constraints
+  # --------------------------------------------------------
+  environmental_constraints:
+    - Hazy Weather
+    - Tilted Camera
+    - Tilted Angle
+
+  # --------------------------------------------------------
+  # Scene Purpose
+  # --------------------------------------------------------
+  scene_purpose:
+    - Pedestrian Movement
+    - Walking
+    - Department Transition
+
+
+
+# ============================================================
+
+scene_09:
+
+  # --------------------------------------------------------
+  # Basic Information
+  # --------------------------------------------------------
+  scene_id: 9
+
+  scene_name: Lakeside Campus Walkway
+
+  environment:
+    indoor_outdoor: Outdoor
+    scene_type: Campus Walkway
+    description: >
+      A static CCTV camera monitoring a campus walkway with an academic
+      building on one side and a lake on the other. Benches and stairs
+      provide access to the lakeside.
+
+  # --------------------------------------------------------
+  # Camera Information
+  # --------------------------------------------------------
+  camera:
+    type: Static
+    angle: High
+    field_of_view: Broad
+
+  # --------------------------------------------------------
+  # Reference Sequences
+  # --------------------------------------------------------
+  reference_sequences:
+    - "09_001"
+    - "09_057"
+    - "09_009"
+
+  # --------------------------------------------------------
+  # Physical Objects
+  # --------------------------------------------------------
+  common_objects:
+    - Walkway
+    - People
+    - Backpacks
+    - Building
+    - Trees
+    - Lake
+    - Lakeside Rails
+    - Stairs
+    - Benches
+    - Sign Board
+
+  # --------------------------------------------------------
+  # Normal Activities
+  # --------------------------------------------------------
+  normal_activities:
+    - Walking
+    - Standing
+    - Waiting
+    - Running
+    - Using Phone
+    - Carrying Luggage
+    - Sweeping
+    - Maintenance Work
+    - Laughing
+
+  # --------------------------------------------------------
+  # Contextual Concerns
+  # --------------------------------------------------------
+  contextual_concerns:
+    - Fighting
+    - Falling
+    - Loitering
+    - Chasing
+    - Weapons
+    - Blocking Pathway
+    - Attacking
+    - Damaging Infrastructure
+    - Throwing Stones
+    - Climbing Rails
+    - Entering Lake
+    - Swimming
+    - Jumping into Water
+    - Vehicle Intrusion
+    - Unauthorized Cycling
+    - Suspicious Object
+
+  # --------------------------------------------------------
+  # Environmental Constraints
+  # --------------------------------------------------------
+  environmental_constraints:
+    - Hazy Weather
+    - Tilted Camera
+    - Tilted Angle
+
+  # --------------------------------------------------------
+  # Scene Purpose
+  # --------------------------------------------------------
+  scene_purpose:
+    - Pedestrian Movement
+    - Walking
+    - Department Transition
+
+    # ============================================================
+
+    # ============================================================
+
+scene_10:
+
+  # --------------------------------------------------------
+  # Basic Information
+  # --------------------------------------------------------
+  scene_id: 10
+
+  scene_name: Campus Building Walkway
+
+  environment:
+    indoor_outdoor: Outdoor
+    scene_type: Campus Building Walkway
+    description: >
+      A static CCTV camera monitoring a campus walkway beside an academic
+      building. A small park with grass and trees is located between the
+      pedestrian pathways, making it a common route for students moving
+      between departments.
+
+  # --------------------------------------------------------
+  # Camera Information
+  # --------------------------------------------------------
+  camera:
+    type: Static
+    angle: High
+    field_of_view: Broad
+
+  # --------------------------------------------------------
+  # Reference Sequences
+  # --------------------------------------------------------
+  reference_sequences:
+    - "10_001"
+    - "10_057"
+    - "10_009"
+
+  # --------------------------------------------------------
+  # Physical Objects
+  # --------------------------------------------------------
+  common_objects:
+    - Walkway
+    - People
+    - Backpacks
+    - Building
+    - Park
+    - Trees
+    - Grass
+    - Benches
+
+  # --------------------------------------------------------
+  # Normal Activities
+  # --------------------------------------------------------
+  normal_activities:
+    - Walking
+    - Standing
+    - Running
+    - Waiting
+    - Sweeping
+    - Using Phone
+    - Carrying Luggage
+    - Maintenance Work
+    - Laughing
+
+  # --------------------------------------------------------
+  # Contextual Concerns
+  # --------------------------------------------------------
+  contextual_concerns:
+    - Fighting
+    - Falling
+    - Loitering
+    - Chasing
+    - Weapons
+    - Blocking Pathway
+    - Attacking
+    - Damaging Infrastructure
+    - Stabbing
+    - Throwing Stones
+    - Vehicle Intrusion
+    - Unauthorized Cycling
+    - Suspicious Object
+
+  # --------------------------------------------------------
+  # Environmental Constraints
+  # --------------------------------------------------------
+  environmental_constraints:
+    - Hazy Weather
+    - Tilted Camera
+    - Tilted Angle
+
+  # --------------------------------------------------------
+  # Scene Purpose
+  # --------------------------------------------------------
+  scene_purpose:
+    - Pedestrian Movement
+    - Walking
+    - Department Transition
+
+scene_11:
+
+  # --------------------------------------------------------
+  # Basic Information
+  # --------------------------------------------------------
+  scene_id: 11
+
+  scene_name: Campus Road with Lakeside Walkway
+
+  environment:
+    indoor_outdoor: Outdoor
+    scene_type: Campus Road
+    description: >
+      A static CCTV camera monitoring a campus road with a pedestrian
+      walkway on one side and a lake on the other. Safety rails separate
+      the walkway from the lakeside.
+
+  # --------------------------------------------------------
+  # Camera Information
+  # --------------------------------------------------------
+  camera:
+    type: Static
+    angle: High
+    field_of_view: Broad
+
+  # --------------------------------------------------------
+  # Reference Sequences
+  # --------------------------------------------------------
+  reference_sequences:
+    - "11_001"
+    - "11_176"
+    - "11_008"
+
+  # --------------------------------------------------------
+  # Physical Objects
+  # --------------------------------------------------------
+  common_objects:
+    - Road
+    - People
+    - Backpacks
+    - Lake
+    - Water
+    - Safety Rails
+    - Bicycle
+
+  # --------------------------------------------------------
+  # Normal Activities
+  # --------------------------------------------------------
+  normal_activities:
+    - Walking
+    - Standing
+    - Running
+    - Waiting
+    - Sweeping
+    - Using Phone
+    - Carrying Luggage
+    - Maintenance Work
+    - Laughing
+    - Driving
+    - Cycling
+
+  # --------------------------------------------------------
+  # Contextual Concerns
+  # --------------------------------------------------------
+  contextual_concerns:
+    - Fighting
+    - Falling
+    - Loitering
+    - Chasing
+    - Weapons
+    - Blocking Pathway
+    - Attacking
+    - Damaging Infrastructure
+    - Stabbing
+    - Climbing Rails
+    - Throwing Stones
+    - Entering Lake
+    - Swimming
+    - Jumping into Water
+    - Suspicious Boat Activity
+    - Suspicious Object
+
+  # --------------------------------------------------------
+  # Environmental Constraints
+  # --------------------------------------------------------
+  environmental_constraints:
+    - Hazy Weather
+    - Tilted Camera
+    - Tilted Angle
+
+  # --------------------------------------------------------
+  # Scene Purpose
+  # --------------------------------------------------------
+  scene_purpose:
+    - Pedestrian Movement
+    - Walking
+    - Department Transition
+    - Vehicle Movement
+
+
+
+# ============================================================
+
+scene_12:
+
+  # --------------------------------------------------------
+  # Basic Information
+  # --------------------------------------------------------
+  scene_id: 12
+
+  scene_name: Campus Walkway with Green Belts
+
+  environment:
+    indoor_outdoor: Outdoor
+    scene_type: Campus Walkway
+    description: >
+      A static CCTV camera monitoring a campus walkway surrounded by
+      green belts, trees, and benches. The area is primarily used for
+      pedestrian movement between campus buildings.
+
+  # --------------------------------------------------------
+  # Camera Information
+  # --------------------------------------------------------
+  camera:
+    type: Static
+    angle: High
+    field_of_view: Broad
+
+  # --------------------------------------------------------
+  # Reference Sequences
+  # --------------------------------------------------------
+  reference_sequences:
+    - "12_002"
+    - "12_143"
+    - "12_152"
+
+  # --------------------------------------------------------
+  # Physical Objects
+  # --------------------------------------------------------
+  common_objects:
+    - People
+    - Backpacks
+    - Grass
+    - Trees
+    - Benches
+
+  # --------------------------------------------------------
+  # Normal Activities
+  # --------------------------------------------------------
+  normal_activities:
+    - Walking
+    - Standing
+    - Running
+    - Waiting
+    - Sweeping
+    - Using Phone
+    - Carrying Luggage
+    - Maintenance Work
+    - Laughing
+
+  # --------------------------------------------------------
+  # Contextual Concerns
+  # --------------------------------------------------------
+  contextual_concerns:
+    - Fighting
+    - Falling
+    - Loitering
+    - Chasing
+    - Weapons
+    - Blocking Pathway
+    - Attacking
+    - Stabbing
+    - Throwing Stones
+    - Vehicle Intrusion
+    - Damaging Vegetation
+    - Suspicious Object
+
+  # --------------------------------------------------------
+  # Environmental Constraints
+  # --------------------------------------------------------
+  environmental_constraints:
+    - Hazy Weather
+    - Tilted Camera
+    - Tilted Angle
+
+  # --------------------------------------------------------
+  # Scene Purpose
+  # --------------------------------------------------------
+  scene_purpose:
+    - Pedestrian Movement
+    - Walking
+    - Department Transition
+
+
+
+# ============================================================
+
+scene_13:
+
+  # --------------------------------------------------------
+  # Basic Information
+  # --------------------------------------------------------
+  scene_id: 13
+
+  scene_name: Lakeside Campus Walkway
+
+  environment:
+    indoor_outdoor: Outdoor
+    scene_type: Campus Walkway
+    description: >
+      A static CCTV camera monitoring a campus walkway with a lake on one
+      side and stairs leading down towards the water. Safety rails protect
+      the lakeside boundary.
+
+  # --------------------------------------------------------
+  # Camera Information
+  # --------------------------------------------------------
+  camera:
+    type: Static
+    angle: High
+    field_of_view: Broad
+
+  # --------------------------------------------------------
+  # Reference Sequences
+  # --------------------------------------------------------
+  reference_sequences:
+    - "13_002"
+    - "13_007"
+    - "13_004"
+
+  # --------------------------------------------------------
+  # Physical Objects
+  # --------------------------------------------------------
+  common_objects:
+    - People
+    - Backpacks
+    - Benches
+    - Stairs
+    - Lake
+    - Safety Rails
+
+  # --------------------------------------------------------
+  # Normal Activities
+  # --------------------------------------------------------
+  normal_activities:
+    - Walking
+    - Standing
+    - Running
+    - Waiting
+    - Sweeping
+    - Using Phone
+    - Carrying Luggage
+    - Maintenance Work
+    - Laughing
+
+  # --------------------------------------------------------
+  # Contextual Concerns
+  # --------------------------------------------------------
+  contextual_concerns:
+    - Fighting
+    - Falling
+    - Loitering
+    - Chasing
+    - Weapons
+    - Blocking Pathway
+    - Attacking
+    - Stabbing
+    - Throwing Stones
+    - Vehicle Intrusion
+    - Swimming
+    - Climbing Rails
+    - Suspicious Boat Activity
+    - Suspicious Object
+
+  # --------------------------------------------------------
+  # Environmental Constraints
+  # --------------------------------------------------------
+  environmental_constraints:
+    - Hazy Weather
+    - Tilted Camera
+    - Tilted Angle
+
+  # --------------------------------------------------------
+  # Scene Purpose
+  # --------------------------------------------------------
+  scene_purpose:
+    - Pedestrian Movement
+    - Walking
+    - Department Transition

@@ -8,3 +8,5 @@ data/
 .ipynb_checkpoints/
 
 .vscode/
+
+*.pt

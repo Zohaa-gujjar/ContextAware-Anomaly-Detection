@@ -1,5 +1,6 @@
 from pathlib import Path
 import cv2
+from PIL import Image
 
 
 class Frame:
@@ -23,6 +24,32 @@ class Frame:
         Load the image using OpenCV.
         """
         return cv2.imread(str(self.image_path))
+
+    def load_pil_image(self):
+        """
+        Load the frame as a PIL Image.
+
+        Returns
+        -------
+        PIL.Image.Image
+            Frame in RGB format.
+
+        Notes
+        -----
+        OpenCV loads images in BGR format, while CLIP expects RGB.
+        Therefore, we convert BGR to RGB before creating the PIL image.
+        """
+
+        # Read image using OpenCV
+        image = cv2.imread(str(self.image_path))
+        if image is None:
+            raise FileNotFoundError(f"Could not load image: {self.image_path}")
+
+        # Convert from BGR to RGB
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+        # Convert NumPy array to PIL Image
+        return Image.fromarray(image)
 
     def __repr__(self):
         return f"Frame({self.filename})"
