@@ -34,7 +34,7 @@ class QwenModel:
     def __init__(
         self,
         model_name: str = DEFAULT_MODEL_NAME,
-        max_new_tokens: int = 256,
+        max_new_tokens: int = 128,
     ):
         """
         Initialize the Qwen model.
@@ -69,10 +69,16 @@ class QwenModel:
         # Processor
         # ---------------------------------------------------------
 
+# Don't preserve unnecessarily high visual resolution. Compress each image into a manageable number of visual tokens before reasoning.
+# We're deliberately starting conservatively because we're working with a 15 GB Tesla T4.
+
+
         self.processor = AutoProcessor.from_pretrained(
-            self.model_name,
-            trust_remote_code=True,
-        )
+        self.model_name,
+        trust_remote_code=True,
+        min_pixels=256 * 28 * 28,
+        max_pixels=512 * 28 * 28,
+)
 
         # ---------------------------------------------------------
         # Model
