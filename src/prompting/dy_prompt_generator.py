@@ -1,13 +1,14 @@
 class DynamicPromptGenerator:
     """
-    Generates a dynamic, context-aware reasoning prompt from
+    Generates a compact, context-aware reasoning prompt from
     ContextBuilder schema v1.0.
 
     Responsibilities
     ----------------
     1. Receive the structured context produced by ContextBuilder.
-    2. Extract scene, domain-knowledge, object, and tracking information.
-    3. Construct a task-specific prompt for Qwen2.5-VL.
+    2. Extract scene, domain-knowledge, object, and high-level
+       tracking information.
+    3. Construct a compact task-specific prompt for Qwen2.5-VL.
 
     This module does NOT:
     - perform object detection,
@@ -16,7 +17,9 @@ class DynamicPromptGenerator:
     - decide whether an anomaly actually occurred,
     - communicate with Qwen.
 
-    It only constructs the reasoning prompt.
+    Raw tracking coordinates and repetitive track-level metadata
+    are intentionally not included in the Qwen prompt. The
+    ContextBuilder still retains that information.
     """
 
     SUPPORTED_SCHEMA_VERSION = "1.0"
@@ -27,9 +30,111 @@ class DynamicPromptGenerator:
         """
         pass
 
+    # -------------------------------------------------------------
+    # Tracking summarization
+    # -------------------------------------------------------------
+
+    def _summarize_tracking(self, tracked_objects):
+        """
+        Convert detailed track-level information into a compact,
+        factual summary suitable for Qwen.
+
+        The raw ContextBuilder information is preserved, but
+        unnecessary numerical details such as bounding boxes and
+        individual confidence values are not passed to Qwen.
+
+        Parameters
+        ----------
+        tracked_objects : list
+            Track-level summaries from ContextBuilder v1.0.
+
+        Returns
+        -------
+        list
+            Compact factual tracking observations.
+        """
+
+        if not tracked_objects:
+            return [
+                "No individual tracking information is available."
+            ]
+
+        observations = []
+
+        # ---------------------------------------------------------
+        # Overall persistence information
+        # ---------------------------------------------------------
+
+        long_tracks = []
+        short_tracks = []
+
+        for obj in tracked_objects:
+
+            frames_visible = obj.get(
+                "frames_visible"
+            )
+
+            if isinstance(frames_visible, (int, float)):
+
+                if frames_visible >= 30:
+                    long_tracks.append(obj)
+
+                else:
+                    short_tracks.append(obj)
+
+        if long_tracks:
+            observations.append(
+                f"{len(long_tracks)} tracked objects remained "
+                f"visible for at least 30 frames."
+            )
+
+        if short_tracks:
+            observations.append(
+                f"{len(short_tracks)} tracked objects were visible "
+                f"for fewer than 30 frames."
+            )
+
+        # ---------------------------------------------------------
+        # Class-level tracking presence
+        # ---------------------------------------------------------
+
+        class_track_counts = {}
+
+        for obj in tracked_objects:
+
+            class_name = obj.get(
+                "class_name",
+                "Unknown"
+            )
+
+            class_track_counts[class_name] = (
+                class_track_counts.get(class_name, 0) + 1
+            )
+
+        if class_track_counts:
+
+            sorted_classes = sorted(
+                class_track_counts.items(),
+                key=lambda x: (-x[1], x[0])
+            )
+
+            for class_name, count in sorted_classes:
+
+                observations.append(
+                    f"{count} tracked instances of "
+                    f"{class_name} were observed."
+                )
+
+        return observations
+
+    # -------------------------------------------------------------
+    # Main prompt generation
+    # -------------------------------------------------------------
+
     def generate_prompt(self, context):
         """
-        Generate a reasoning prompt from ContextBuilder v1.0.
+        Generate a compact reasoning prompt from
+        ContextBuilder v1.0.
 
         Parameters
         ----------
@@ -39,7 +144,7 @@ class DynamicPromptGenerator:
         Returns
         -------
         str
-            Dynamic reasoning prompt for Qwen2.5-VL.
+            Compact dynamic reasoning prompt for Qwen2.5-VL.
         """
 
         # =========================================================
@@ -213,101 +318,37 @@ class DynamicPromptGenerator:
             )
 
         # =========================================================
-        # 7. Format tracked-object information
+        # 7. Create compact tracking summary
         # =========================================================
 
-        if tracked_objects:
+        tracking_observations = self._summarize_tracking(
+            tracked_objects
+        )
 
-            track_lines = []
-
-            for obj in tracked_objects:
-
-                track_id = obj.get(
-                    "track_id",
-                    "Unknown"
-                )
-
-                class_name = obj.get(
-                    "class_name",
-                    "Unknown"
-                )
-
-                first_frame = obj.get(
-                    "first_seen_frame",
-                    "Unknown"
-                )
-
-                last_frame = obj.get(
-                    "last_seen_frame",
-                    "Unknown"
-                )
-
-                frames_visible = obj.get(
-                    "frames_visible",
-                    "Unknown"
-                )
-
-                average_confidence = obj.get(
-                    "average_confidence",
-                    "Unknown"
-                )
-
-                first_bbox = obj.get(
-                    "first_bbox",
-                    "Unknown"
-                )
-
-                last_bbox = obj.get(
-                    "last_bbox",
-                    "Unknown"
-                )
-
-                track_lines.append(
-                    (
-                        f"- Track {track_id}: "
-                        f"{class_name}; "
-                        f"frames {first_frame}-{last_frame}; "
-                        f"visible for {frames_visible} frames; "
-                        f"average detection confidence "
-                        f"{average_confidence}; "
-                        f"initial bounding box "
-                        f"{first_bbox}; "
-                        f"final bounding box "
-                        f"{last_bbox}"
-                    )
-                )
-
-            tracking_object_text = "\n".join(
-                track_lines
-            )
-
-        else:
-
-            tracking_object_text = (
-                "- No individual tracking information available."
-            )
+        tracking_summary = "\n".join(
+            f"- {observation}"
+            for observation in tracking_observations
+        )
 
         # =========================================================
-        # 8. Construct the reasoning prompt
+        # 8. Construct compact reasoning prompt
         # =========================================================
 
         prompt = f"""
 You are a visual reasoning system analyzing a surveillance
 video sequence.
 
-Your task is to determine whether the activity occurring in
-the provided sequence is consistent with the normal activity
-expected in the identified scene or whether there is evidence
-of anomalous activity.
+Your task is to determine whether the activity visible in the
+provided frames is consistent with the normal activity expected
+in the identified scene or whether there is evidence of anomalous
+activity.
 
-IMPORTANT:
-The contextual concerns listed below are possible types of
-deviation that are relevant to this scene. Their presence in
-the list does NOT mean that the corresponding event is
-actually occurring.
+The contextual concerns below represent possible deviations that
+are relevant to the scene. Their presence does NOT mean that the
+corresponding event is occurring.
 
-You must base your conclusion on the visual evidence in the
-provided video/frames.
+Use the visual evidence as the primary basis for your conclusion.
+Use the supplied contextual information to interpret that evidence.
 
 ============================================================
 SCENE CONTEXT
@@ -331,7 +372,6 @@ Scene Purpose:
 Environmental Constraints:
 {constraint_text}
 
-
 ============================================================
 EXPECTED SCENE CONTEXT
 ============================================================
@@ -342,45 +382,36 @@ Normal Activities:
 Contextual Concerns:
 {concern_text}
 
-
 ============================================================
-OBSERVED OBJECT CONTEXT
+OBSERVED CONTEXT
 ============================================================
 
 Tracked Objects by Class:
 {object_summary}
 
-Number of Frames Processed:
+Frames Processed:
 {frames_processed}
-
-Total Tracking Records:
-{total_records}
 
 Unique Tracked Objects:
 {unique_track_ids}
 
-
-============================================================
-TRACK-LEVEL OBSERVATIONS
-============================================================
-
-{tracking_object_text}
-
+Tracking Summary:
+{tracking_summary}
 
 ============================================================
 REASONING TASK
 ============================================================
 
-Examine the provided visual sequence carefully.
+Examine all provided frames carefully.
 
-1. Identify the main activity or activities occurring in
-   the sequence.
+1. Identify the main activity or activities visible in the
+   sequence.
 
 2. Compare the observed activity with the normal activities
    expected for this scene.
 
-3. Consider the contextual concerns as possible deviations
-   that deserve attention.
+3. Consider the contextual concerns as possible deviations,
+   but do not assume that any concern is actually occurring.
 
 4. Determine whether the observed activity is:
 
@@ -388,16 +419,14 @@ Examine the provided visual sequence carefully.
    - ANOMALOUS
    - UNCERTAIN
 
-5. Do not classify an event as anomalous merely because a
-   contextual concern is listed. An anomaly must be supported
-   by observable visual evidence.
+5. An anomalous classification must be supported by observable
+   visual evidence.
 
-6. If you determine that the activity is anomalous, describe
-   the observable behavior that supports that conclusion.
+6. If anomalous, briefly describe the observable behavior that
+   supports the conclusion.
 
-7. If the evidence is insufficient to make a reliable
-   determination, explicitly state that the result is
-   uncertain rather than assuming an anomaly.
+7. If the visual evidence is insufficient, classify the result
+   as UNCERTAIN rather than assuming an anomaly.
 
 ============================================================
 RESPONSE FORMAT
@@ -410,12 +439,11 @@ Observed Activity:
 [Brief description of what is visibly happening]
 
 Reasoning:
-[Explain why the observed activity is or is not consistent
-with the expected activity for this scene.]
+[Brief explanation comparing the observed activity with the
+expected activity for the scene]
 
 Evidence:
-[List the specific visual observations supporting the
-classification.]
+[Specific visual observations supporting the classification]
 
 Do not infer events that cannot be supported by the visual
 evidence.
