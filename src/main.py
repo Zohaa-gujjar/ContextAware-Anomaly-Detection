@@ -270,6 +270,8 @@ def main():
     print("=" * 70)
 
     print(generated_prompt)
+    print("\nPrompt characters:", len(generated_prompt))
+    print("Prompt words:", len(generated_prompt.split())) 
 
     print("\n")
     print("=" * 70)
