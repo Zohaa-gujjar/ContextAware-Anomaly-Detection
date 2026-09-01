@@ -303,6 +303,7 @@ class DynamicPromptGenerator:
             for class_name, count in sorted(
                 object_counts.items()
             ):
+
                 object_lines.append(
                     f"- {class_name}: {count}"
                 )
@@ -331,7 +332,7 @@ class DynamicPromptGenerator:
         )
 
         # =========================================================
-        # 8. Construct compact reasoning prompt
+        # 8. Construct context-aware reasoning prompt
         # =========================================================
 
         prompt = f"""
@@ -339,16 +340,14 @@ You are a visual reasoning system analyzing a surveillance
 video sequence.
 
 Your task is to determine whether the activity visible in the
-provided frames is consistent with the normal activity expected
-in the identified scene or whether there is evidence of anomalous
-activity.
+provided frames is NORMAL, ANOMALOUS, or UNCERTAIN for the
+identified scene.
 
-The contextual concerns below represent possible deviations that
-are relevant to the scene. Their presence does NOT mean that the
-corresponding event is occurring.
+Use the visual evidence as the PRIMARY basis for your conclusion.
+Use the supplied scene context only to interpret that evidence.
 
-Use the visual evidence as the primary basis for your conclusion.
-Use the supplied contextual information to interpret that evidence.
+The contextual concerns are POSSIBLE deviations, not evidence
+that those events are occurring.
 
 ============================================================
 SCENE CONTEXT
@@ -399,34 +398,66 @@ Tracking Summary:
 {tracking_summary}
 
 ============================================================
+ANOMALY DECISION RULES
+============================================================
+
+1. Identify ONLY actions or events that are visibly supported
+   by the provided frames.
+
+2. Objects are NOT anomalies by themselves.
+   A backpack, handbag, bicycle, luggage, or other object does
+   not constitute anomalous behavior.
+
+3. Do NOT classify something as anomalous merely because it is:
+   - uncommon,
+   - unusual,
+   - unexpected,
+   - carried by a person,
+   - associated with a single person,
+   - or different from other people in the scene.
+
+4. Compare the OBSERVED BEHAVIOR with the listed normal
+   activities for the scene.
+
+5. ANOMALOUS requires a specific observable behavior or event
+   that clearly deviates from the expected activity.
+
+6. Do NOT infer intentions, suspiciousness, hidden events,
+   gatherings, or circumstances that are not visibly supported.
+
+7. If the visible activity is consistent with a normal activity
+   and no specific anomalous behavior is visible, classify it
+   as NORMAL.
+
+8. If the frames do not provide enough evidence to determine
+   whether an anomaly is occurring, classify it as UNCERTAIN.
+
+9. Before assigning ANOMALOUS, identify the exact observable
+   behavior that makes the activity anomalous.
+
+============================================================
 REASONING TASK
 ============================================================
 
-Examine all provided frames carefully.
+Examine all provided frames together.
 
-1. Identify the main activity or activities visible in the
-   sequence.
+1. Identify the main visible activity.
 
-2. Compare the observed activity with the normal activities
-   expected for this scene.
+2. Compare that activity with the normal activities expected
+   for this scene.
 
-3. Consider the contextual concerns as possible deviations,
-   but do not assume that any concern is actually occurring.
+3. Check whether any specific anomalous behavior is visibly
+   occurring.
 
-4. Determine whether the observed activity is:
+4. Do not treat contextual concerns or detected objects as
+   evidence of an anomaly unless the corresponding behavior
+   is actually visible.
 
-   - NORMAL
-   - ANOMALOUS
-   - UNCERTAIN
+5. Determine the classification:
 
-5. An anomalous classification must be supported by observable
-   visual evidence.
-
-6. If anomalous, briefly describe the observable behavior that
-   supports the conclusion.
-
-7. If the visual evidence is insufficient, classify the result
-   as UNCERTAIN rather than assuming an anomaly.
+   NORMAL
+   ANOMALOUS
+   UNCERTAIN
 
 ============================================================
 RESPONSE FORMAT
@@ -439,11 +470,14 @@ Observed Activity:
 [Brief description of what is visibly happening]
 
 Reasoning:
-[Brief explanation comparing the observed activity with the
+[Brief comparison between the observed activity and the
 expected activity for the scene]
 
 Evidence:
 [Specific visual observations supporting the classification]
+
+If ANOMALOUS, explicitly state the specific visible behavior
+that makes it anomalous.
 
 Do not infer events that cannot be supported by the visual
 evidence.
