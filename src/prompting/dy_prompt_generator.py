@@ -419,21 +419,47 @@ ANOMALY DECISION RULES
 4. Compare the OBSERVED BEHAVIOR with the listed normal
    activities for the scene.
 
-5. ANOMALOUS requires a specific observable behavior or event
-   that clearly deviates from the expected activity.
+5. ANOMALOUS is a HIGH-EVIDENCE classification.
 
-6. Do NOT infer intentions, suspiciousness, hidden events,
-   gatherings, or circumstances that are not visibly supported.
+   Before choosing ANOMALOUS, you must identify a specific
+   visible action or event that:
+   (a) is actually visible in the provided frames, AND
+   (b) clearly conflicts with the Normal Activities for this scene.
 
-7. If the visible activity is consistent with a normal activity
-   and no specific anomalous behavior is visible, classify it
-   as NORMAL.
+   If either condition is not satisfied, do NOT choose ANOMALOUS.
 
-8. If the frames do not provide enough evidence to determine
-   whether an anomaly is occurring, classify it as UNCERTAIN.
+6. If an observed behavior is explicitly listed under
+   Normal Activities, treat that behavior as NORMAL unless
+   the frames show a clearly abnormal form of that behavior.
 
-9. Before assigning ANOMALOUS, identify the exact observable
-   behavior that makes the activity anomalous.
+7. Do not reinterpret a normal activity as anomalous merely
+   because of its direction, speed, location within the frame,
+   or apparent purpose.
+
+8. Running, walking, standing, waiting, cycling, carrying
+   ordinary belongings, and similar activities are NORMAL when
+   listed in the scene context.
+
+   They must not be classified as anomalous without additional
+   visible evidence of abnormal behavior.
+
+9. Do NOT infer that running indicates danger, escape, pursuit,
+   an emergency, or suspicious behavior unless such behavior
+   is directly visible.
+
+10. Do NOT infer intentions, suspiciousness, hidden events,
+    gatherings, or circumstances that are not visibly supported.
+
+11. If the visible activity is consistent with a normal activity
+    and no specific anomalous behavior is visible, classify it
+    as NORMAL.
+
+12. If the frames do not provide enough evidence to determine
+    the activity reliably, classify it as UNCERTAIN rather than
+    assuming an anomaly.
+
+13. Before assigning ANOMALOUS, explicitly identify the exact
+    observable behavior that makes the activity anomalous.
 
 ============================================================
 REASONING TASK
